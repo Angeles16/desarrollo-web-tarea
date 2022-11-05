@@ -24,7 +24,34 @@
         <div class="col-b-gen ">
             <h1 class="mb-5">Solicitudes pendientes</h1>
             <hr>
-        
+            <fieldset>
+            <!--<legend>Hello</legend>-->
+                
+                    <div class="row">
+                        <div class=" col-xl-4">
+                                <label for="exampleFormControlInput1" class="form-label">Departamento</label>
+                                <select name="cars" id="codigoDepartamento" class="btn btn-secondary dropdown-toggle" style="width: 100%" onclick="searchHistoricoUser(value)" >
+                                     <option value="0">Seleccionar Opcion</option>
+                                    <option value="1">Logistica</option>
+                                    <option value="2">Servicio al cliente</option>
+                                    <option value="3">Bodega</option>
+                                    <option value="4">Compras</option>
+                                    <option value="5">Contabilidad</option>
+                                </select>
+                                </div>
+                    
+                        <div class="col-xl-4">
+                            <label for="exampleFormControlInput1" class="form-label">Fecha</label>
+                            <input type="date" class="form-control" id="fechaIdS"
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary mt-2" style="width: 4cm" onclick="getTodos()">Buscar x</button>
+                    </div>
+            
+            </fieldset>
+            <div class="my-1"></div>
+            <br>
             <span id="solicituders-p"></span>
         </div>
     </div>

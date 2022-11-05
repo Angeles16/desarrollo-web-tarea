@@ -1,0 +1,135 @@
+[
+  {
+    "codigo": "1",
+    "cotizacion": "Compra de boligrafos", 
+    "Codigoepartamento": "5", 
+    "departamento": "Contabilidad", 
+    "estado": "Activo", 
+    "fecha": "2022-11-16", 
+    "justificacion": "El departamento de contabilidad ya no cuenta con boligrafos", 
+    "monto": "200", 
+    "nombre": "Milton"
+  },
+  {
+    "codigo": "2",
+    "cotizacion": "Compra de cuadernillos", 
+    "Codigoepartamento": "2", 
+    "departamento": "Servicio al cliente", 
+    "estado": "Activo", 
+    "fecha": "2022-11-18", 
+    "justificacion": "Se solicita cuadernillos para apuntes y registro de algunas cuentas", 
+    "monto": "200", 
+    "nombre": "Milton"
+  },
+  {
+    "codigo": "3",
+    "cotizacion": "Compra de folderes con empaste grueso", 
+    "Codigoepartamento": "5", 
+    "departamento": "Contabilidad", 
+    "estado": "Activo", 
+    "fecha": "2022-11-11", 
+    "justificacion": "es necesario para el almaenamiento de hojas contables periodo de agosto", 
+    "monto": "200", 
+    "nombre": "Milton"
+  },
+  {
+    "codigo": "4",
+    "cotizacion": "Compra sinta para identificacion", 
+    "Codigoepartamento": "1", 
+    "departamento": "logistica", 
+    "estado": "Activo", 
+    "fecha": "2022-11-13", 
+    "justificacion": "sinta anterior apunto de acabarce, es necesaria nueva sinta para identificacion", 
+    "monto": "200", 
+    "nombre": "Milton"
+  },
+  {
+    "codigo": "5",
+    "cotizacion": "Compra Archivero", 
+    "Codigoepartamento": "2", 
+    "departamento": "Servicio al cliente", 
+    "estado": "Activo", 
+    "fecha": "2022-11-16", 
+    "justificacion": "El departamento tiene un crecimiento en empleados por lo que es necesario un nuevo archivero", 
+    "monto": "200", 
+    "nombre": "Pedro roberto"
+  },
+  {
+    "codigo": "6",
+    "cotizacion": "Compra de sellos 2023",
+    "Codigoepartamento": "5",  
+    "departamento": "Contabilidad", 
+    "estado": "Activo", 
+    "fecha": "2022-11-20", 
+    "justificacion": "sellos para el 2023", 
+    "monto": "200", 
+    "nombre": "Pedro roberto"
+  },
+  {
+    "codigo": "7",
+    "cotizacion": "empaques para paquetes pequeños", 
+    "Codigoepartamento": "1", 
+    "departamento": "logistica", 
+    "estado": "Activo", 
+    "fecha": "2022-11-21", 
+    "justificacion": "Es necesario adquirir empaques pequeños para un mejor almacenaje de algunos productos", 
+    "monto": "200", 
+    "nombre": "Pedro roberto"
+  },
+  {
+    "codigo": "8",
+    "cotizacion": "remplazo para silla de gestor contable", 
+    "Codigoepartamento": "5", 
+    "departamento": "Contabilidad", 
+    "estado": "Activo", 
+    "fecha": "2022-11-25", 
+    "justificacion": "la silla del gestor contable se encuentra dañada", 
+    "monto": "200", 
+    "nombre": "Pedro roberto"
+  },
+  {
+    "codigo": "9",
+    "cotizacion": "papel burbuja", 
+    "Codigoepartamento": "3", 
+    "departamento": "bodega", 
+    "estado": "Activo", 
+    "fecha": "2022-11-30", 
+    "justificacion": "es necesario para el embalaje de productos delicados", 
+    "monto": "200", 
+    "nombre": "Pedro roberto"
+  },
+  {
+    "codigo": "10",
+    "cotizacion": "ciento de posit", 
+    "Codigoepartamento": "5", 
+    "departamento": "Contabilidad", 
+    "estado": "Activo", 
+    "fecha": "2022-12-19", 
+    "justificacion": "Identificar documentos", 
+    "monto": "200", 
+    "nombre": "Pedro roberto"
+  },
+  {
+    "codigo": "11",
+    "cotizacion": "corrtinas 4 x 8", 
+    "Codigoepartamento": "1", 
+    "departamento": "logistica", 
+    "estado": "Activo", 
+    "fecha": "2022-11-30", 
+    "justificacion": "la oficina de logistica cuenta con una ventana de 4x8 por lo que es necesario adquirir una cortina", 
+    "monto": "200", 
+    "nombre": "Pedro roberto"
+  },
+  {
+    "codigo": "12",
+    "cotizacion": "Compra de escritorio", 
+    "Codigoepartamento": "4", 
+    "departamento": "compras", 
+    "estado": "Activo", 
+    "fecha": "2022-11-06", 
+    "justificacion": "un nuevo empleado se integro al grupo de logistica por lo que es necesario adquir un escritorio", 
+    "monto": "200", 
+    "nombre": "Pedro roberto"
+  }
+
+]

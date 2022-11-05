@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Luis Angel",
+    "username": "langel",
+    "password": "als16"
+  },
+  {
+    "id": 2,
+    "name": "Milton",
+    "username": "amilton",
+    "password": "123abc"
+  },
+  {
+    "id": 3,
+    "name": "Carlos",
+    "username": "acarlos",
+    "password": "123abc"
+  },
+  {
+    "id": 4,
+    "name": "Patricia Lebsack",
+    "username": "apatricia",
+    "password": "Lebsack"
+  },
+  {
+    "id": 5,
+    "name": "Chelsey Deyna",
+    "username": "adeyna",
+    "password": "deyna123"
+  },
+  {
+    "id": 6,
+    "name": "Mrs. Dennis Schulist",
+    "username": "aleonel",
+    "password": "aleo"
+  }
+]

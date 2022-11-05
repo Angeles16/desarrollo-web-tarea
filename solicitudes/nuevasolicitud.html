@@ -24,44 +24,46 @@
         <div class="col-b-gen ">
             <h1 class="mb-5">Formulario para solicitud de compra</h1>
             <hr>
-            <form action="POST">
+            <form>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Codigo</label>
+                    <input type="text" class="form-control" id="id_codigo" />
+                </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Titulo solicitud</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                    <input type="text" class="form-control" id="id_titulo" />
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Monto apoximado de gasto</label>
-                    <input type="number" class="form-control" id="exampleFormControlInput1"
+                    <input type="number" class="form-control" id="id_monto" />
                 </div>
+
                 <div class="mb-3">
-                    <div class="row">
-                        <div class="col-5">
-                            <label for="exampleFormControlInput1" class="form-label">Fecha maxima respuesta</label>
-                            <input type="date" class="form-control" style="width: 5cm" id="exampleFormControlInput1"
-                        </div>
-                        <div class="col-5">
-                            <div class="dropdown my-4">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Departamento solicitante
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Contabilidad</a></li>
-                                    <li><a class="dropdown-item" href="#">Logistica</a></li>
-                                    <li><a class="dropdown-item" href="#">Servicio al cliente</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                    <label for="exampleFormControlTextarea1" class="form-label">Justificacion de la olicitud</label>
+                    <textarea class="form-control" id="id_justificacion" rows="3"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-5 mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Fecha maxima respuesta</label>
+                        <input type="date" class="form-control" id="id_fecha" />
                     </div>
+                    <div class="col-5 mb-3 mx-3">
+
+                                <label for="exampleFormControlInput1" class="form-label">Departamento</label>
+                                <select name="cars" id="id_departamento" class="btn btn-secondary dropdown-toggle" style="width: 100%" onclick="searchHistoricoUser(value)" >
+                                     <option value=0 >Seleccionar Opcion</option>
+                                    <option value=1 >Logistica</option>
+                                    <option value=2 >Servicio al cliente</option>
+                                    <option value=3 >Bodega</option>
+                                    <option value=4 >Compras</option>
+                                    <option value=5 >Contabilidad</option>
+                                </select>
+                                </div>
+                    
                 </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Justificacion de la solicitud</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Default file input example</label>
-                    <input class="form-control" type="file" id="formFile">
-                </div>
+                <button class="btn btn-success" onclick="solicitudPost()">
+                    Guardar
+                </button>
             </form>
         </div>
     </div>
@@ -72,4 +74,5 @@
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"></script>
 <script src="solicitudes.js"></script>
+
 </html>

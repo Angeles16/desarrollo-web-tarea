@@ -17,3 +17,10 @@
     height:100vh;
     padding: 2rem 3rem;
 }
+
+fieldset {
+    border: 3px solid #e7f1ff;
+    padding: 25px;
+    border-radius: 10px;
+}
+

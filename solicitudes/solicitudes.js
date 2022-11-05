@@ -1,5 +1,7 @@
 console.log('hello solicitudes')
 
+const URL_API = 'https://compras.com';
+
 let generateSidebar = document.getElementById('sidebar-solicitud')
 let domSidebar = (`
             <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -7,7 +9,7 @@ let domSidebar = (`
                     <h2 class="accordion-header" id="flush-headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            Alertas
+                            Acciones
                         </button>
                     </h2>
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
@@ -38,27 +40,32 @@ generateSidebar.innerHTML = domSidebar;
 
 
 
-async function getTodos() {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+async function getSolicitudes() {
+    const departamentoCod = document.getElementById('codigoDepartamento').value;
+    const fechads = document.getElementById('fechaIdS').value;
+    const res = await fetch(`https://7354-20-85-156-46.ngrok.io/solicitudes/mostrar?filtrodep=${departamentoCod}&filtrofecha=${fechads}`);
     const jsonData = await res.json();
-
+    console.log(jsonData)
     let tbodyTodos = '';
-    jsonData.map(({ userId, id, title, completed }) => {
+    jsonData.map(({ cotizacion, departamento, estado, fecha, justificacion, monto, nombre}, index) => {
+        console.log({ cotizacion, departamento, estado, fecha, justificacion, monto, nombre})
         let solicitudBodyHistorico = (`
             <div class="accordion mb-3" id="accordionExample">
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading${id}">
+                    <h2 class="accordion-header" id="heading${index}">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse${id}" aria-expanded="true" aria-controls="collapse${id}">
-                            ${title}
+                            data-bs-target="#collapse${index}" aria-expanded="true" aria-controls="collapse${index}">
+                            ${cotizacion}fasdf
                         </button>
                     </h2>
-                    <div id="collapse${id}" class="accordion-collapse collapse show" aria-labelledby="heading${id}"
+                    <div id="collapse${index}" class="accordion-collapse collapse show" aria-labelledby="heading${index}"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <strong>Tarea realizada por el departamento de .</strong> <br />
-                            <code>14/10/2022</code> <br />
-                            ${title}
+                            <strong>Tarea realizada por el departamento de - ${departamento}.</strong> <br />
+                            <code>${fecha}</code> <br />
+                            ${departamento}
+                            <br />
+                            ${justificacion}
                         </div>
                     </div>
                 </div>
@@ -70,79 +77,64 @@ async function getTodos() {
     let generateSolicitudesPendientes = document.getElementById('solicituders-p')
     generateSolicitudesPendientes.innerHTML = tbodyTodos;
 };
-window.onload = getTodos;
 
 
 
+async function solicitudPosts(e) {
+       let codigo = document.getElementById('id_codigo').value
+    let titulo = document.getElementById('id_titulo').value;
+    let monto = document.getElementById('id_monto').value;
+    let detalle = document.getElementById('id_justificacion').value;
+    let fecha = document.getElementById('id_fecha').value;
+    let departamento = document.getElementById('id_departamento').value;
+    //let fecha = document.getElementById('id_fecha').value;
 
-function solicitudPost(objeto) {
-    let titulo = document.getElementById('titulo') 
-    let monto = document.getElementById('monto') 
-    let fecha = document.getElementById('fecha') 
-    let departamento = document.getElementById('departamento') 
-    let detalle = document.getElementById('detalle') 
-    let file = document.getElementById('file') 
-    let formulario = objeto.form;
-    for (let i = 0; i < formulario.elements.length; i++) {
-        formulario.elements[i].classList.remove("error");
-        if (
-            formulario.elements[i].type == "text" &&
-            formulario.elements[i].value == ""
-        ) {
-            alert(
-                "El campo: " +
-                formulario.elements[i].name +
-                " no puede estar en blanco"
-            );
-            formulario.elements[i].classList.add("error");
-            formulario.elements[i].focus();
-            return false;
-        }
-        else if (formulario.elements[i].id == "archivo") {
-            let letFile = formulario.elements[i].value;
-            if (isNaN(letFile) || letFile < 0 || letFile > 115) {
-                alert(
-                    "El campo: " +
-                    formulario.elements[i].name +
-                    " debe ser un formato pdf"
-                );
-                formulario.elements[i].classList.add("error");
-                formulario.elements[i].focus();
-                return false;
-            }
-        } else if (formulario.elements[i].id == "matricula") {
-            const patron = /^\d{4}\s?[A-Z]{3}$/;
-
-            if (patron.test(document.getElementById("matricula").value)) {
-                document.getElementById("matricula").classList.remove("error");
-                return true;
-            } else {
-                alert(
-                    "El campo: Matricula no está correcto.\n\nCuatro números, espacio en blanco opcional y 3 letras mayúsculas."
-                );
-                document.getElementById("matricula").focus();
-                document.getElementById("matricula").classList.add("error");
-                return false;
-            }
-        }
+    let nombreDepartamento = ""
+    switch (departamento) {
+        case 1:
+            nombreDepartamento = 'logistica'
+        break;
+        case 2:
+            nombreDepartamento = 'Servicio al cliente'
+        break;
+        case 3:
+            nombreDepartamento = 'bodega'
+        break;
+        case 4:
+            nombreDepartamento = 'compras'
+        break;
+        case 5:
+            nombreDepartamento = 'Contabilidad'
+        break;
+        default:
+            break;
     }
 
-    const urlport = 'http://solicitudes.com/post'
-
-    postData(urlport, formulario)
-    // Si todos los campos de texto son válidos se envia la peticion post
-
-    async function postData(url, data) {
-        const response = await fetch(url, {
-          method: 'POST', 
-          mode: 'cors', 
-          cache: 'no-cache', 
-          body: JSON.stringify(data) 
-        });
-      
-        return response.json(); 
+    let jsonSolicitud = {
+        "codigo": codigo,
+        "cotizacion": titulo, 
+        "Codigoepartamento": departamento,
+        "departamento": nombreDepartamento,
+        "estado": "Activo",
+        "fecha": fecha,
+        "justificacion": detalle, 
+        "monto": monto, 
+        "nombre": "Luis Angel"
     }
-
+    console.log(jsonSolicitud);
+   //const URL_API = 'https://compras.com/solicitud';
+    const response = await fetch('https://7354-20-85-156-46.ngrok.io/solicitudes', {
+      method: "POST",
+      mode: "cors",          
+      headers: {
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Methods": "GET,POST",
+        "Access-Control-Allow-Origin": "*",      
+        "Content-Type": "application/json",        
+      },
+      body: JSON.stringify(jsonSolicitud),
+    });
+    return 200
 }
 
 
@@ -182,4 +174,166 @@ async function getSolicitudes() {
 
     let generateTableHistorico = document.getElementById('table-historico');
     generateTableHistorico.innerHTML = domTableHistorico;
+}
+
+async function searchHistoricoUser(usuario) {
+    console.log(usuario)
+
+    // const res = await fetch(`http://apipaiton/solicitudes/historico/searchforuser/${usuario}`);
+    // const jsonData = await res.json();
+
+    // let bodyTableHistoricoUser = '';
+    // jsonData.map(({ id, title, body }) => {
+    //     let incrementTableBodyHistoricoUser = (`
+    //     <tr>
+    //     <th scope="row">${id}</th>
+    //     <td>${title}</td>
+    //     <td>${body}</td>
+    //     </tr>
+    //     `)
+
+    //     bodyTableHistoricoUser += incrementTableBodyHistoricoUser;
+    // })
+    // let ElementTableHistoricoUser = (`
+    // <table class="table">
+    //     <thead>
+    //         <tr>
+    //         <th scope="col">Id</th>
+    //         <th scope="col">Title</th>
+    //         <th scope="col">Detalle</th>
+    //         </tr>
+    //     </thead>
+    //     <tbody>
+    //     ${bodyTableHistoricoUser}
+    //     </tbody>
+    // </table>
+    //     `);
+
+    // let generateTableHistorico = document.getElementById('table-historico');
+    // generateTableHistorico.innerHTML = ElementTableHistoricoUser;
+}
+
+async function getTodos() {    
+    const departamentoCod = document.getElementById('codigoDepartamento').value;
+    const fechads = document.getElementById('fechaIdS').value;
+    // const res = await fetch('../PRUEBAS/solicitudes.json');
+    // const jsonData = await res.json();
+    const jsonData = JSON.parse(localStorage.getItem("solicitudes"));
+    let tbodyTodos = '';
+    
+    jsonData.map(({ cotizacion, Codigoepartamento, departamento, estado, fecha, justificacion, monto, nombre}, index) => {
+        console.log({ cotizacion, departamento, estado, fecha, justificacion, monto, nombre})
+        if(Codigoepartamento === departamentoCod || fechads === fecha) {
+        let solicitudBodyHistorico = (`
+            <div class="accordion mb-3" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading${index}">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse${index}" aria-expanded="true" aria-controls="collapse${index}">
+                            ${cotizacion}
+                        </button>
+                    </h2>
+                    <div id="collapse${index}" class="accordion-collapse collapse show" aria-labelledby="heading${index}"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>Tarea realizada por el departamento de - ${departamento}.</strong> <br />
+                            <code>${fecha}</code> <br />
+                            <br />
+                            ${justificacion}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `)
+
+        tbodyTodos += solicitudBodyHistorico
+        }
+    })
+    let generateSolicitudesPendientes = document.getElementById('solicituders-p')
+    generateSolicitudesPendientes.innerHTML = tbodyTodos;
+};
+
+async function searchHistoricoTime(time) {
+    console.log(usuario)
+
+    // const res = await fetch(`http://apipaiton/solicitudes/historico/searchforuser/${time}`);
+    // const jsonData = await res.json();
+
+    // let tbodyHistoricoTime = '';
+    // jsonData.map(({ id, title, body }) => {
+    //     let headerTableHistoricoTime = (`
+    //     <tr>
+    //     <th scope="row">${id}</th>
+    //     <td>${title}</td>
+    //     <td>${body}</td>
+    //     </tr>
+    //     `)
+
+    //     tbodyHistoricoTime += headerTableHistoricoTime;
+    // })
+    // let dobyTableHistoricoTime = (`
+    // <table class="table">
+    //     <thead>
+    //         <tr>
+    //         <th scope="col">Id</th>
+    //         <th scope="col">Title</th>
+    //         <th scope="col">Detalle</th>
+    //         </tr>
+    //     </thead>
+    //     <tbody>
+    //     ${tbodyHistoricoTime}
+    //     </tbody>
+    // </table>
+    //     `);
+
+    // let generateHistoricoTime = document.getElementById('table-historico');
+    // generateHistoricoTime.innerHTML = dobyTableHistoricoTime;
+}
+
+async function solicitudPost(e) {
+    let codigo = document.getElementById('id_codigo').value
+    let titulo = document.getElementById('id_titulo').value;
+    let monto = document.getElementById('id_monto').value;
+    let detalle = document.getElementById('id_justificacion').value;
+    let fecha = document.getElementById('id_fecha').value;
+    let departamento = document.getElementById('id_departamento').value;
+    //let fecha = document.getElementById('id_fecha').value;
+
+    let nombreDepartamento = ""
+    switch (departamento) {
+        case 1:
+            nombreDepartamento = 'logistica'
+        break;
+        case 2:
+            nombreDepartamento = 'Servicio al cliente'
+        break;
+        case 3:
+            nombreDepartamento = 'bodega'
+        break;
+        case 4:
+            nombreDepartamento = 'compras'
+        break;
+        case 5:
+            nombreDepartamento = 'Contabilidad'
+        break;
+        default:
+            break;
+    }
+
+    let jsonSolicitud = {
+        "codigo": codigo,
+        "cotizacion": titulo, 
+        "Codigoepartamento": departamento,
+        "departamento": nombreDepartamento,
+        "estado": "Activo",
+        "fecha": fecha,
+        "justificacion": detalle, 
+        "monto": monto, 
+        "nombre": "Luis Angel"
+    }
+    console.log(jsonSolicitud);
+     const jsonData = JSON.parse(localStorage.getItem("solicitudes"));
+     jsonData.push(jsonSolicitud);
+      localStorage.setItem('solicitudes', JSON.stringify(jsonData))
+
 }
